@@ -33,7 +33,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["archetype3.onrender.com", "localhost"]
+ALLOWED_HOSTS = ["archetype3.onrender.com", "localhost", "127.0.0.1"]
 CORS_ALLOWED_ORIGINS = ["https://archetype3.onrender.com", "http://localhost:3000", "http://localhost:8000"]
 CSRF_TRUSTED_ORIGINS = ["https://archetype3.onrender.com", "http://localhost:8000"]
 
@@ -100,10 +100,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 import dj_database_url
 
 DATABASES = {
-    "default": dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-    ),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'faidon',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 # Password validation
